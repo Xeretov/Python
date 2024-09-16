@@ -1,12 +1,21 @@
+from logging import FileHandler,WARNING
 from flask import Flask, render_template, request
-api = Flask("__name__")
+api = Flask("__name__", template_folder="./templates")
 utenti = [["mariorossi@gamil.com","mariorossi85","baubau66",0]]
 
-@api.route('/', methods=['GET'])
+@api.route('/', methods=['POST'])
 def index():
     return render_template("index.html")
 
-@api.route('/registrati', methods=['GET'])
+@api.route('/regok', methods=['POST'])
+def regok():
+    return render_template("reg_ok.html")
+
+@api.route('/regko', methods=['POST'])
+def regko():
+    return render_template("reg_ko.html")
+
+@api.route('/registrati', methods=['POST'])
 def registrati():
     utente=[]
     utente.append(request.args.get('email'))
