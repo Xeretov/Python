@@ -1,3 +1,6 @@
+# Gioele Amendola
+# 29/09/2024
+
 try:
     import json
 except ImportError:
@@ -11,12 +14,12 @@ password = ""
 comando = ""
 
 def StampaMenuOperazioni():
-    print("1. Inserisci cittadino")
+    print("\n1. Inserisci cittadino")
     print("2. Leggi dati cittadino")
     print("3. Modifica cittadino")
     print("4. Elimina cittadino")
     print("5. Inserisci credenziali")
-    print("6. Exit")
+    print("\n0. Exit\n")
     comando = input("Inserisci operazione: ")
     return comando
     
@@ -39,52 +42,68 @@ def AcquisisciCredenziali():
 
 
 while comando != 0:
-    print("Cosa vuoi fare?")
+    print("\n") if not username and not password else print("\nusername: "+username)
+    print("Cosa vuoi fare?") 
     comando = StampaMenuOperazioni()
     print("Comando inserito: " + comando)
+
+    # Inserisci cittadino
     if comando=="1":
-        api_url = base_api_url + "add_cittadino"
+        api_url = base_api_url + "add_cittadino" # url per l'operazione di inserimento
         jsonDataRequest = GetDatiCittadino()
         response = requests.post(api_url,json=jsonDataRequest,verify=False,auth=HTTPBasicAuth(username,password))
-        #print(response.json())
         print(response.status_code)
         print(response.headers["Content-Type"])
         data1 = response.json()
         if (type(response.json()) is dict):
                 print_dictionary(response.json())
+
+    # Leggi dati cittadino
     elif comando=="2":
         api_url = base_api_url + "get_cittadino"
-        response = requests.get(api_url,verify=False,auth=HTTPBasicAuth(username,password))
-        #print(response.json())
+        codF = input("Inserisci codice fiscale del cittadino: ")
+        jsonDataRequest = {"codFiscale": codF}
+        response = requests.get(api_url, params=jsonDataRequest, verify=False, auth=HTTPBasicAuth(username,password))
         print(response.status_code)
         print(response.headers["Content-Type"])
         data1 = response.json()
         if (type(response.json()) is dict):
             print_dictionary(response.json())
+
+    # Modifica cittadino
     elif comando=="3":
         api_url = base_api_url + "mod_cittadino"
+        codF = input("Inserisci codice fiscale del cittadino da modificare: ")
+        print("\nInserisci i dati del cittadino da modificare (lasciare vuoto se non si vuole modificare): ")
         jsonDataRequest = GetDatiCittadino()
+        jsonDataRequest["cercaCod"] = codF
         response = requests.put(api_url,json=jsonDataRequest,verify=False,auth=HTTPBasicAuth(username,password))
-        #print(response.json())
         print(response.status_code)
         print(response.headers["Content-Type"])
         data1 = response.json()
         if (type(response.json()) is dict):
             print_dictionary(response.json())
+
+    # Elimina cittadino
     elif comando=="4":
         api_url = base_api_url + "del_cittadino"
-        response = requests.delete(api_url,verify=False,auth=HTTPBasicAuth(username,password))
-        #print(response.json())
+        codF = input("Inserisci codice fiscale del cittadino: ")
+        jsonDataRequest = {"codFiscale": codF}
+        response = requests.delete(api_url, json=jsonDataRequest, verify=False, auth=HTTPBasicAuth(username, password))
         print(response.status_code)
         print(response.headers["Content-Type"])
         data1 = response.json()
         if (type(response.json()) is dict):
             print_dictionary(response.json())
+
+    # Sign in
     elif comando=="5":
         AcquisisciCredenziali()
+
+    # Sign out
     elif comando=="0":
         break
     else:
-        print("Comando non riconosciuto. Riprova.")
+        print("\nComando non riconosciuto. Riprova.\n\n")
 
 
