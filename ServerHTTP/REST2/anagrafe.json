@@ -28,5 +28,17 @@
         "cognome": "Rossi",
         "data nascita": "24/02/1990",
         "codice fiscale": "aaaaa"
+    },
+    "MiticoRedentore": {
+        "nome": "Riccardo",
+        "cognome": "Russo",
+        "data nascita": "01/01/0",
+        "codice fiscale": "MiticoRedentore"
+    },
+    "bbbbb": {
+        "nome": "Giuseppe",
+        "cognome": "Guttoriello",
+        "data nascita": "17/09/1996",
+        "codice fiscale": "bbbbb"
     }
 }
