@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <style>
+    
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        * {box-sizing: border-box}
+        input[type=text], input[type=password],input[type=file] {
+            width: 100%;
+            font-size: 28px;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+        label{
+            font-size: 15px;
+        }
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+        button {
+            font-size: 18px;
+            font-weight: bold;
+            background-color: rgb(10, 119, 13);
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+        button:hover {
+            opacity:1;
+        }
+        .cancel {
+            padding: 14px 20px;
+            background-color: #ff3d2f;
+        }
+        .formContainer {
+            padding: 16px;
+        }
+        .formContainer p{
+            font-size: 28px;
+        }
+        .hidden {
+            display: none
+        }
+      </style>
+   </head>
+   <body>
+        <h1>Seleziona un'opzione</h1>
+        <select id="optionSelect" onchange="updateForm()">
+            <option value="">Seleziona un'opzione</option>
+            <option value="creareFavola">Creare una favola</option>
+            <option value="rispondereDomanda">Rispondere ad una domanda</option>
+            <option value="rispondereDomandaImg">Rispondere ad una domanda su un file img</option>
+        </select>
+
+        <div id="formContainer">
+            <form id="dynamicForm">
+                <div id="argomentoContainer" class="hidden">
+                    <label for="argomento">Argomento:</label>
+                    <input type="text" id="argomento" name="argomento" required>
+                </div>
+
+                <div id="filePathContainer" class="hidden">
+                    <label for="filePath">Scegli un'immagine:</label>
+                    <input type="file" id="filePath" name="filePath" accept="image/*">
+                </div>
+                <div>
+                    <button type="submit">Invia</button>
+                    <button type="button" class="cancel" onclick="cancelForm()">Annulla</button>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            function updateForm() {
+                const selectedValue = document.getElementById("optionSelect").value;
+                const argomentoContainer = document.getElementById("argomentoContainer");
+                const filePathContainer = document.getElementById("filePathContainer");
+
+                // Hide all containers initially
+                argomentoContainer.classList.add("hidden");
+                filePathContainer.classList.add("hidden");
+
+                // Show relevant containers based on selection
+                if (selectedValue === "creareFavola" || selectedValue === "rispondereDomanda") {
+                    argomentoContainer.classList.remove("hidden");
+                }
+                if (selectedValue === "rispondereDomandaImg") {
+                    argomentoContainer.classList.remove("hidden");
+                    filePathContainer.classList.remove("hidden");
+                }
+            }
+
+            function cancelForm() {
+                // Clear the form and hide all inputs
+                document.getElementById("dynamicForm").reset();
+                updateForm(); // Reset visibility of inputs
+            }
+        </script>
+    </body>
+</html>
