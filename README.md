@@ -12,9 +12,18 @@ Un client per interagire con l'API Generative AI di Google (Gemini).
 - Analizzare immagini
 
 ### File principali
-- `client.py`
-- `myjson.py`
-- `creajsonpersf.sh`
+- `client.py`: Client principale per interagire con l'API
+- `myjson.py`: Funzioni per gestire operazioni JSON
+- `creajsonpersf.sh`: Script Bash per creare JSON per richieste di immagini
+- `server.py`: Server Flask per l'interfaccia web
+- `index.html`: Pagina HTML principale per l'interfaccia utente
+- `script.js`: JavaScript per la logica dell'interfaccia utente
+- `style.css`: Foglio di stile CSS per l'interfaccia utente
+
+### Struttura del progetto
+- `/api`: Contiene i file Python per il backend
+- `/public`: Contiene i file HTML per il frontend
+- `/src`: Contiene i file JS e CSS per il frontend
 
 ## 2. Server HTTP Flask
 
