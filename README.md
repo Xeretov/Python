@@ -2,28 +2,34 @@
 
 Questa repository contiene diversi progetti Python che coprono varie aree di applicazione.
 
-## 1. Generative AI Client
+## 1. Generative AI Web Application
 
-Un client per interagire con l'API Generative AI di Google (Gemini).
+Un'applicazione web per interagire con l'API Generative AI di Google (Gemini).
 
 ### Funzionalità
 - Creare favole
 - Rispondere a domande testuali
-- Analizzare immagini
+- Analizzare immagini e rispondere a domande su di esse
 
 ### File principali
-- `client.py`: Client principale per interagire con l'API
-- `myjson.py`: Funzioni per gestire operazioni JSON
-- `creajsonpersf.sh`: Script Bash per creare JSON per richieste di immagini
-- `server.py`: Server Flask per l'interfaccia web
+- `server.py`: Server Flask per l'applicazione web e gestione delle richieste API
+- `client.py`: Modulo per l'interazione con l'API di Google Gemini
 - `index.html`: Pagina HTML principale per l'interfaccia utente
 - `script.js`: JavaScript per la logica dell'interfaccia utente
 - `style.css`: Foglio di stile CSS per l'interfaccia utente
 
 ### Struttura del progetto
-- `/api`: Contiene i file Python per il backend
-- `/public`: Contiene i file HTML per il frontend
-- `/src`: Contiene i file JS e CSS per il frontend
+- `/`: Contiene i file principali del server e del client
+- `/templates`: Contiene i file HTML per il frontend
+- `/static`: Contiene i file JS e CSS per il frontend
+- `/uploads`: Directory per le immagini caricate dagli utenti
+
+### Caratteristiche principali
+- Interfaccia web responsive con Flask
+- Caricamento e analisi di immagini direttamente dal browser
+- Visualizzazione dei risultati con scrolling assistito
+- Gestione dinamica del form basata sulla selezione dell'utente
+- Integrazione seamless con l'API di Google Gemini
 
 ## 2. Server HTTP Flask
 
@@ -71,9 +77,4 @@ Uno script per cercare stringhe in file e directory.
 ### File principali
 - `cerca.py`
 
-## Requisiti generali
-
-- Python 3.x
-- Varie librerie Python (vedi `requirements.txt` in ogni progetto)
-- Un ambiente di sviluppo Python (ad esempio, `virtualenv`)
 
