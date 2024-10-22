@@ -2,4 +2,4 @@ venv/
 .venv/
 errorlog.txt
 __pycache__
-image.jpg
+uploads/
