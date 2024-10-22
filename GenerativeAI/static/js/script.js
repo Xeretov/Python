@@ -1,5 +1,5 @@
 // Constants
-const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyCCm6Aoj2M18Gho95y7LEYIcCG9NjAIYdE";
+const API_URL = "/generate"; // This will be a route in the Flask server
 
 // DOM Elements
 const optionSelect = document.getElementById("optionSelect");
@@ -54,73 +54,51 @@ async function submitForm(event) {
     event.preventDefault();
     const selectedValue = optionSelect.value;
     const argomento = document.getElementById("argomento").value;
-    let data;
+
+    const formData = new FormData();
+    formData.append('task', selectedValue);
+    formData.append('prompt', argomento);
+
+    let imageUrl = null;
+    if (selectedValue === "rispondereDomandaImg") {
+        const fileInput = document.getElementById("filePath");
+        const file = fileInput.files[0];
+        if (file) {
+            formData.append('image', file);
+            imageUrl = URL.createObjectURL(file);
+        }
+    }
 
     try {
-        data = await prepareRequestData(selectedValue, argomento);
-        const response = await sendApiRequest(data);
-        const generatedText = response.candidates[0].content.parts[0].text;
-        displayResult(generatedText);
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            const result = await response.text();
+            displayResult(result, imageUrl);
+        } else {
+            throw new Error(`Server responded with ${response.status}: ${response.statusText}`);
+        }
     } catch (error) {
         console.error("Error details:", error);
         alert("An error occurred while processing your request. Please check the console for more details.");
     }
 }
 
-// API Request Helpers
-async function prepareRequestData(selectedValue, argomento) {
-    let data = {
-        contents: [{
-            parts: []
-        }]
-    };
-
-    if (selectedValue === "creareFavola") {
-        data.contents[0].parts.push({ text: `Crea una favola: ${argomento}` });
-    } else if (selectedValue === "rispondereDomanda") {
-        data.contents[0].parts.push({ text: `${argomento}?` });
-    } else if (selectedValue === "rispondereDomandaImg") {
-        const fileInput = document.getElementById("filePath");
-        const file = fileInput.files[0];
-        if (!file) {
-            throw new Error("Please select an image file.");
-        }
-
-        const base64Image = await getBase64(file);
-        data.contents[0].parts.push(
-            { text: argomento },
-            { inline_data: { mime_type: file.type, data: base64Image } }
-        );
-    }
-
-    return data;
-}
-
-async function sendApiRequest(data) {
-    console.log("Sending request:", JSON.stringify(data));
-    const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    });
-
-    console.log("Response status:", response.status);
-    if (response.ok) {
-        const result = await response.json();
-        console.log("API response:", result);
-        return result;
-    } else {
-        const errorText = await response.text();
-        console.error("API error response:", errorText);
-        throw new Error(`API request failed: ${response.status} ${errorText}`);
-    }
-}
-
 // Result Display
-function displayResult(result) {
+function displayResult(result, imageUrl) {
     resultContent.textContent = result;
+    const uploadedImage = document.getElementById("uploadedImage");
+    
+    if (imageUrl) {
+        uploadedImage.src = imageUrl;
+        uploadedImage.classList.remove("hidden");
+    } else {
+        uploadedImage.classList.add("hidden");
+    }
+    
     document.querySelector('.container').classList.add('expanded');
     resultContainer.classList.remove("hidden");
     formContainer.classList.add("hidden");
@@ -139,15 +117,5 @@ function scrollToBottom() {
     resultContainer.scrollTo({
         top: resultContainer.scrollHeight,
         behavior: 'smooth'
-    });
-}
-
-// Utility Functions
-function getBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = error => reject(error);
     });
 }

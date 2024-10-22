@@ -46,6 +46,11 @@ body {
     max-width: 100%;
 }
 
+.uploaded-image {
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
 /* Navigation arrows */
 .nav-arrows {
     position: sticky;
@@ -167,4 +172,5 @@ button[type="submit"]:hover {
 .hidden {
     display: none;
 }
+
 
