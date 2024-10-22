@@ -10,6 +10,7 @@ const formContainer = document.getElementById("formContainer");
 const resultContainer = document.getElementById("resultContainer");
 const resultContent = document.getElementById("resultContent");
 const backButton = document.getElementById("backButton");
+const argomentoInput = document.getElementById("argomento")
 
 // Event Listeners
 window.onload = resetForm;
@@ -29,9 +30,9 @@ function updateForm() {
         argomentoContainer.classList.remove("hidden");
         buttonsContainer.classList.remove("hidden");
         if (selectedValue === "creareFavola") {
-            argomentoInput.placeholder = "Inserisci l'argomento (verrà inviato come: 'crea una favola: [il tuo input]')";
+            argomentoInput.placeholder = "Verrà inviato come: 'crea una favola: [il tuo input]'";
         } else {
-            argomentoInput.placeholder = "Inserisci la domanda (verrà inviato con '?' alla fine)";
+            argomentoInput.placeholder = "Verrà inviato con '?' alla fine della domanda";
         }
     } else if (selectedValue === "rispondereDomandaImg") {
         argomentoContainer.classList.remove("hidden");
