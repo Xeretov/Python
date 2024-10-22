@@ -63,8 +63,13 @@ body {
     width: auto;
     padding: 10px;
     margin-left: 10px;
+    background-color: #666;
+    color: white;
 }
 
+.nav-arrows button:hover{
+    background-color: #333;
+}
 /* Back arrow button */
 .back-arrow {
     background: none;
