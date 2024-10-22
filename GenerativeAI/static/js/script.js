@@ -28,10 +28,16 @@ function updateForm() {
     if (selectedValue === "creareFavola" || selectedValue === "rispondereDomanda") {
         argomentoContainer.classList.remove("hidden");
         buttonsContainer.classList.remove("hidden");
+        if (selectedValue === "creareFavola") {
+            argomentoInput.placeholder = "Inserisci l'argomento (verrà inviato come: 'crea una favola: [il tuo input]')";
+        } else {
+            argomentoInput.placeholder = "Inserisci la domanda (verrà inviato con '?' alla fine)";
+        }
     } else if (selectedValue === "rispondereDomandaImg") {
         argomentoContainer.classList.remove("hidden");
         filePathContainer.classList.remove("hidden");
         buttonsContainer.classList.remove("hidden");
+        argomentoInput.placeholder = "Inserisci la domanda sull'immagine";
     }
 }
 
