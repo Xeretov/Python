@@ -53,7 +53,7 @@ function showForm() {
     formContainer.classList.remove("hidden");
     resultContainer.classList.add("hidden");
     document.querySelector('.container').classList.remove('expanded');
-    backButton.classList.add("hidden");
+    argomentoInput.value = "";
 }
 
 // Form Submission
