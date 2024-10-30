@@ -30,9 +30,9 @@ function updateForm() {
         argomentoContainer.classList.remove("hidden");
         buttonsContainer.classList.remove("hidden");
         if (selectedValue === "creareFavola") {
-            argomentoInput.placeholder = "Verrà inviato come: 'crea una favola: [il tuo input]'";
+            argomentoInput.placeholder = "es. 'La principessa di ghiaccio', 'Il procione ciccione'";
         } else {
-            argomentoInput.placeholder = "Verrà inviato con '?' alla fine della domanda";
+            argomentoInput.placeholder = "es. 'Cosa succede quando si entra in un buco nero?'";
         }
     } else if (selectedValue === "rispondereDomandaImg") {
         argomentoContainer.classList.remove("hidden");
@@ -52,6 +52,7 @@ function resetForm() {
 function showForm() {
     formContainer.classList.remove("hidden");
     resultContainer.classList.add("hidden");
+    backButton.classList.add("hidden")
     document.querySelector('.container').classList.remove('expanded');
     argomentoInput.value = "";
 }
@@ -86,17 +87,17 @@ async function submitForm(event) {
             const result = await response.text();
             displayResult(result, imageUrl);
         } else {
-            throw new Error(`Server responded with ${response.status}: ${response.statusText}`);
+            throw new Error(`Risposta server ${response.status}: ${response.statusText}`);
         }
     } catch (error) {
-        console.error("Error details:", error);
-        alert("An error occurred while processing your request. Please check the console for more details.");
+        console.error("Dettagli errore:", error);
+        alert("E' stato rilevato un errore, guardare la console per più informazioni.");
     }
 }
 
 // Result Display
 function displayResult(result, imageUrl) {
-    resultContent.textContent = result;
+    resultContent.innerHTML = result;
     const uploadedImage = document.getElementById("uploadedImage");
     
     if (imageUrl) {

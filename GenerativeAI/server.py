@@ -1,8 +1,6 @@
-# server.py
-from flask import Flask, render_template, request, jsonify
-from werkzeug.utils import secure_filename
+from flask import Flask, render_template, request
 import os
-from client import generate_content
+from generativeAI_tools import generate_content, convert_markdown_to_html
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'
@@ -20,21 +18,21 @@ def generate():
     if task == 'rispondereDomandaImg':
         image = request.files.get('image')
         if image:
-            filename = secure_filename(image.filename)
-            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            image_path = os.path.join(app.config['UPLOAD_FOLDER'], "image.png")
             image.save(image_path)
     
     if task == 'creareFavola':
         prompt = f"Crea una favola: {prompt}"
     elif task == 'rispondereDomanda':
-        prompt = f"{prompt}?"
+        prompt = f"{prompt}"
     
     result = generate_content(prompt, image_path)
     
     # Extract the text from the result
     generated_text = result['candidates'][0]['content']['parts'][0]['text']
-    
-    return generated_text
+    # Convert the markdown texto to html compatible
+    html = convert_markdown_to_html(generated_text)
+    return html
 
 if __name__ == '__main__':
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
