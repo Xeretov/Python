@@ -1,4 +1,5 @@
 venv/
+myenv/
 .venv/
 errorlog.txt
 __pycache__
