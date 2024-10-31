@@ -2,6 +2,7 @@
 # 02/09/2024
 
 import os, PyPDF2, textract
+from geminiSearch import getImgText
 
 #IMMISSIONE DEI PARAMETRI
 dirRoot: str = input("Inserisci la root directory: ")
@@ -28,7 +29,7 @@ def CercaStringaInFileContent(file: str,string: str) -> bool:
         flag = CercaStringaInPdf(file, string)
     elif ext == ".doc" or ext == ".docx":
         flag = CercaStringaInDoc(file, string)
-    elif ext == ".img" or ext == ".jpg" or ext ==".png":
+    elif ext == ".img" or ext == ".jpg" or ext == ".png" or ext == ".webp":
         flag = CercaStringaInImg(file, string)
     else:
         try:
@@ -68,7 +69,12 @@ def CercaStringaInDoc(file: str, string: str) -> bool:
     return False 
 
 def CercaStringaInImg(file: str, string: str) -> bool:
-    image = file
+    text: str = getImgText(file)
+    print(text)
+    text = text.lower()
+    if string.lower() in text:
+        return True
+    return False
 
 
 #NAVIGA NEL FILE SYSTEM
