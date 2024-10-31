@@ -62,13 +62,21 @@ def CercaStringaInPdf(file: str, string: str) -> bool:
     return False
 
 def CercaStringaInDoc(file: str, string: str) -> bool:
-    text: str = textract.process(file)
+    # textract module
+    # process function:
+    # This is the core function used for extracting text.
+    # It routes the filename to the appropriate parser and returns
+    # the extracted text as a byte-string encoded with encoding.
+    text: str = textract.process(file) 
     text = text.lower()
     if string.lower() in text:
         return True
     return False 
 
 def CercaStringaInImg(file: str, string: str) -> bool:
+    # geminiSearch module
+    # getImgText function:
+    # This function returns a single word from the image anylized by gemini.
     text: str = getImgText(file)
     print(text)
     text = text.lower()

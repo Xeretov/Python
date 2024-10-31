@@ -1,5 +1,6 @@
 mkdir cercastringa
 cp cerca.py ./cercastringa
+cp geminiSearch.py ./cercastringa
 cp requirements.txt ./cercastringa
 cd cercastringa
 virtualenv myenv
