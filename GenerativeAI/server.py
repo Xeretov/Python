@@ -13,6 +13,7 @@ def index():
 def generate():
     task = request.form['task']
     prompt = request.form['prompt']
+    title = request.form['prompt']
     
     image_path = None
     if task == 'rispondereDomandaImg':
@@ -45,7 +46,8 @@ def generate():
         else:
             return "L'immagine caricata va contro le linee guida di Gemini."
     # Convert the markdown texto to html compatible
-    html = convert_markdown_to_html(generated_text)
+    html = f"<h1>{title}</h1>"
+    html += convert_markdown_to_html(generated_text)
     return html
 
 if __name__ == '__main__':

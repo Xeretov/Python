@@ -51,6 +51,10 @@ body {
     margin-bottom: 1rem;
 }
 
+.image-container {
+    text-align: center;
+}
+
 /* Navigation arrows */
 .nav-arrows {
     position: sticky;
