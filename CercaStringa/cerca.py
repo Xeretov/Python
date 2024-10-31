@@ -1,7 +1,7 @@
 # Gioele Amendola
 # 02/09/2024
 
-import os, PyPDF2#, textract
+import os, PyPDF2, textract
 
 #IMMISSIONE DEI PARAMETRI
 dirRoot: str = input("Inserisci la root directory: ")
@@ -28,6 +28,8 @@ def CercaStringaInFileContent(file: str,string: str) -> bool:
         flag = CercaStringaInPdf(file, string)
     elif ext == ".doc" or ext == ".docx":
         flag = CercaStringaInDoc(file, string)
+    elif ext == ".img" or ext == ".jpg" or ext ==".png":
+        flag = CercaStringaInImg(file, string)
     else:
         try:
             with open(file, 'r') as f:
@@ -59,11 +61,15 @@ def CercaStringaInPdf(file: str, string: str) -> bool:
     return False
 
 def CercaStringaInDoc(file: str, string: str) -> bool:
-    #text: str = textract.process(file)
+    text: str = textract.process(file)
     text = text.lower()
     if string.lower() in text:
         return True
     return False 
+
+def CercaStringaInImg(file: str, string: str) -> bool:
+    image = file
+
 
 #NAVIGA NEL FILE SYSTEM
 nFiles: int = 0
@@ -74,13 +80,24 @@ for root, dirs, files in os.walk(dirRoot):
     for filename in files:
         flag: bool = CercaStringaInFileName(filename,string)
         if flag:
-            foundIn += filename
+            foundIn.append(filename)
             nFiles += 1
         else:
             flag = CercaStringaInFileContent(os.path.join(root,filename), string)
             if flag:
-                foundIn += filename
+                foundIn.append(filename)
                 nContent += 1
-print(f"La stringa {string} è stata trovata in:\n{filename}")
+print(f"\nLa stringa {string} è stata trovata come nome in {nFiles} file ed è contenuta in {nContent} file.")
+while True:
+    comand = input("\nVuoi vedere i file in cui è stato trovato? (y/n)") if foundIn else print("Nessun file trovato.")
+    if comand in ["Y","y"]:
+        print(f"File contenenti la stringa:\n{foundIn}")
+        break
+    elif comand in ["N","n"]:
+        break
+    else:
+        print("Comando non riconosciuto. Riprova.")
+
+
 
 
