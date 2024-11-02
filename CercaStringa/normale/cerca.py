@@ -2,12 +2,10 @@
 # 02/09/2024
 
 import os, PyPDF2, textract
-from geminiSearch import getImgText
 
 #IMMISSIONE DEI PARAMETRI
 dirRoot: str = input("Inserisci la root directory: ")
 string: str = input("Inserisci la stringa da cercare: ")
-dirOutput: str = input("Inserisci la dir di output: ")
 
 #FUNZIONI
 def CercaStringaInFileName(file: str, string: str) -> bool:
@@ -29,8 +27,6 @@ def CercaStringaInFileContent(file: str,string: str) -> bool:
         flag = CercaStringaInPdf(file, string)
     elif ext == ".doc" or ext == ".docx":
         flag = CercaStringaInDoc(file, string)
-    elif ext == ".img" or ext == ".jpg" or ext == ".png" or ext == ".webp":
-        flag = CercaStringaInImg(file, string)
     else:
         try:
             with open(file, 'r') as f:
@@ -72,17 +68,6 @@ def CercaStringaInDoc(file: str, string: str) -> bool:
     if string.lower() in text:
         return True
     return False 
-
-def CercaStringaInImg(file: str, string: str) -> bool:
-    # geminiSearch module
-    # getImgText function:
-    # This function returns a single word from the image anylized by gemini.
-    text: str = getImgText(file)
-    print(text)
-    text = text.lower()
-    if string.lower() in text:
-        return True
-    return False
 
 
 #NAVIGA NEL FILE SYSTEM
