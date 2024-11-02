@@ -1,5 +1,7 @@
 import os
 from geminiSearch import search
+import PyPDF2
+from docx import Document
 
 def ricerca_per_nome(file_path: str, stringa: str) -> bool:
     """
@@ -14,8 +16,22 @@ def ricerca_contenuti(file_path: str, stringa: str, tipo: int) -> tuple[bool, st
     file_type: 1 per PDF, 2 per DOCX, 3 per immagini
     '''
     try:
-        result: str = search(tipo, file_path)
-        return stringa.lower() in result.lower(), result
+        if tipo == 1: # PDF
+            with open(file_path, 'rb') as f:
+                pdf_reader = PyPDF2.PdfReader(f)
+                text: str = ""
+                for page in pdf_reader.pages:
+                    text += page.extract_text()
+            return stringa.lower() in text.lower(), text
+        elif tipo == 2: # DOC o DOCX
+            doc = Document(file_path)
+            text = '\n'.join([paragraph.text for paragraph in doc.paragraphs])
+            return stringa.lower() in text.lower(), text
+        elif tipo == 3: # Immagini
+            result: str = search(tipo, file_path)
+            return stringa.lower() in result.lower(), result
+        else:
+            return False, ""
     except Exception as e:
         print(f"Errore nell'analisi del file {file_path}: {str(e)}")
         return False, ""
@@ -105,6 +121,7 @@ def stampa_risultati(risultati_testo, risultati_immagini, risultati_nome, string
         for file_path, descrizione in risultati_immagini:
             messaggio = f"\nImmagine: {file_path}\nDescrizione: {descrizione[:100]}...\n" if len(descrizione) > 100 else f"\nImmagine: {file_path}\nDescrizione: {descrizione}\n"
             stampa_messaggio(messaggio, file)
+    stampa_messaggio(f"\nLa stringa '{stringa}' è stata riscontrata {len(risultati_immagini)+len(risultati_nome)+len(risultati_testo)} volte.")
 
     if file:
         file.close()
