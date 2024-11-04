@@ -52,4 +52,4 @@ def generate():
 
 if __name__ == '__main__':
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-    app.run(debug=True)
+    app.run(host="localhost", port=443, ssl_context=('./cert/01.pem', './cert/01.key'), debug=True)
