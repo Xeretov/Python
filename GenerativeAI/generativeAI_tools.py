@@ -6,7 +6,7 @@ from myjson import *
 
 google_api_key: str
 with open("../gemini-api-key.txt","r") as f:
-    google_api_key = f.line.strip()
+    google_api_key = f.readline().strip()
 base_api_url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent"
 
 def generate_content(prompt, image_path=None):

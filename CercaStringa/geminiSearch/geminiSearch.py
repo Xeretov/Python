@@ -10,26 +10,12 @@ def search(tipo, file_path) -> str:
     prompt = "" # Promt da mandare a Gemini
     google_api_key: str
     with open("../../gemini-api-key.txt","r") as f:
-        google_api_key = f.line.strip()
+        google_api_key = f.readline().strip()
 
     try:
-        if tipo == 1:  # PDF
-            mime_type = "application/pdf"
-            with open(file_path, "rb") as file:
-                data = file.read()
-            prompt = "Leggi il contenuto di questo documento PDF e facci un riassunto in testo normale"
-        
-        elif tipo == 2:  # DOCX
-            mime_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            with open(file_path, "rb") as file:
-                data = file.read()
-            prompt = "Leggi il contenuto di questo documento DOCX e facci un riassunto in testo normale"
-        
-        elif tipo == 3:  # Immagine
-            mime_type = "image/jpeg"
-            with open(file_path, "rb") as file:
-                data = file.read()
-            prompt = "Analizza l'immagine e descrivi in dettaglio il soggetto"
+        with open(file_path, "rb") as file:
+            data = file.read()
+        prompt = "Analizza l'immagine e descrivi in dettaglio il soggetto"
 
         headers = {
             "Content-tipo": "application/json",
@@ -42,7 +28,7 @@ def search(tipo, file_path) -> str:
                     {"text": prompt},
                     {
                         "inline_data": {
-                            "mime_type": mime_type,
+                            "mime_type": "image/jpeg",
                             "data": base64.b64encode(data).decode('utf-8')
                         }
                     }
