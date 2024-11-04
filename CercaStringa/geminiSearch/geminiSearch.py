@@ -8,6 +8,9 @@ def search(tipo, file_path) -> str:
     data = None # Contenuto da mandare a Gemini
     mime_type = "" # Tipo di contenuto da mandare a Gemini
     prompt = "" # Promt da mandare a Gemini
+    google_api_key: str
+    with open("../../gemini-api-key.txt","r") as f:
+        google_api_key = f.line.strip()
 
     try:
         if tipo == 1:  # PDF
@@ -30,7 +33,7 @@ def search(tipo, file_path) -> str:
 
         headers = {
             "Content-tipo": "application/json",
-            "x-goog-api-key": "AIzaSyCCm6Aoj2M18Gho95y7LEYIcCG9NjAIYdE"
+            "x-goog-api-key": google_api_key
         }
 
         request_data = {
