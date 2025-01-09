@@ -1,0 +1,26 @@
+{
+    "IT12345678901": {
+        "nome": "Filiale A",
+        "indirizzo_sede": "Via Roma",
+        "civico": "10",
+        "telefono": "0123456789"
+    },
+    "IT98765432109": {
+        "nome": "Filiale B",
+        "indirizzo_sede": "Via Milano",
+        "civico": "5",
+        "telefono": "0987654321"
+    },
+    "IT11223344556": {
+        "nome": "Filiale C",
+        "indirizzo_sede": "Via Torino",
+        "civico": "15",
+        "telefono": "0112233445"
+    },
+    "IT99887766554": {
+        "nome": "Filiale D",
+        "indirizzo_sede": "Via Napoli",
+        "civico": "20",
+        "telefono": "0998877665"
+    }
+}

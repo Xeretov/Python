@@ -1,0 +1,82 @@
+{
+    "C54321": {
+        "indirizzo": "Via Torino",
+        "civico": "15",
+        "tipo_affitto": "TOTALE",
+        "bagno_personale": true,
+        "prezzo_mensile": "900",
+        "filiale_proponente": "Filiale A"
+    },
+    "D98765": {
+        "indirizzo": "Via Napoli",
+        "civico": "20",
+        "tipo_affitto": "PARZIALE",
+        "bagno_personale": false,
+        "prezzo_mensile": "600",
+        "filiale_proponente": "Filiale B"
+    },
+    "E12345": {
+        "indirizzo": "Via Firenze",
+        "civico": "25",
+        "tipo_affitto": "TOTALE",
+        "bagno_personale": true,
+        "prezzo_mensile": "950",
+        "filiale_proponente": "Filiale C"
+    },
+    "F67890": {
+        "indirizzo": "Via Venezia",
+        "civico": "30",
+        "tipo_affitto": "PARZIALE",
+        "bagno_personale": false,
+        "prezzo_mensile": "650",
+        "filiale_proponente": "Filiale D"
+    },
+    "G54321": {
+        "indirizzo": "Via Bologna",
+        "civico": "35",
+        "tipo_affitto": "TOTALE",
+        "bagno_personale": true,
+        "prezzo_mensile": "800",
+        "filiale_proponente": "Filiale A"
+    },
+    "H98765": {
+        "indirizzo": "Via Palermo",
+        "civico": "40",
+        "tipo_affitto": "PARZIALE",
+        "bagno_personale": false,
+        "prezzo_mensile": "700",
+        "filiale_proponente": "Filiale B"
+    },
+    "I12345": {
+        "indirizzo": "Via Genova",
+        "civico": "45",
+        "tipo_affitto": "TOTALE",
+        "bagno_personale": true,
+        "prezzo_mensile": "850",
+        "filiale_proponente": "Filiale C"
+    },
+    "J67890": {
+        "indirizzo": "Via Bari",
+        "civico": "50",
+        "tipo_affitto": "PARZIALE",
+        "bagno_personale": false,
+        "prezzo_mensile": "600",
+        "filiale_proponente": "Filiale D"
+    },
+    "K12345": {
+        "indirizzo": "Via Trieste",
+        "civico": "55",
+        "tipo_affitto": "TOTALE",
+        "bagno_personale": true,
+        "prezzo_mensile": "920",
+        "filiale_proponente": "Filiale A"
+    },
+    "L67890": {
+        "indirizzo": "Via Catania",
+        "civico": "60",
+        "tipo_affitto": "PARZIALE",
+        "bagno_personale": false,
+        "prezzo_mensile": "680",
+        "filiale_proponente": "Filiale B"
+    }
+}

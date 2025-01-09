@@ -1,0 +1,102 @@
+{
+    "A12345": {
+        "indirizzo": "Via Roma",
+        "numero_civico": "10",
+        "piano": "2",
+        "metri": "100",
+        "vani": "3",
+        "prezzo": "200000",
+        "stato": "LIBERO",
+        "filiale_proponente": "Filiale A"
+    },
+    "B67890": {
+        "indirizzo": "Via Milano",
+        "numero_civico": "5",
+        "piano": "1",
+        "metri": "80",
+        "vani": "2",
+        "prezzo": "150000",
+        "stato": "OCCUPATO",
+        "filiale_proponente": "Filiale B"
+    },
+    "C54321": {
+        "indirizzo": "Via Torino",
+        "numero_civico": "15",
+        "piano": "3",
+        "metri": "120",
+        "vani": "4",
+        "prezzo": "250000",
+        "stato": "LIBERO",
+        "filiale_proponente": "Filiale C"
+    },
+    "D98765": {
+        "indirizzo": "Via Napoli",
+        "numero_civico": "20",
+        "piano": "2",
+        "metri": "90",
+        "vani": "3",
+        "prezzo": "180000",
+        "stato": "OCCUPATO",
+        "filiale_proponente": "Filiale D"
+    },
+    "E12345": {
+        "indirizzo": "Via Firenze",
+        "numero_civico": "25",
+        "piano": "4",
+        "metri": "150",
+        "vani": "5",
+        "prezzo": "300000",
+        "stato": "LIBERO",
+        "filiale_proponente": "Filiale A"
+    },
+    "F67890": {
+        "indirizzo": "Via Venezia",
+        "numero_civico": "30",
+        "piano": "1",
+        "metri": "70",
+        "vani": "2",
+        "prezzo": "130000",
+        "stato": "OCCUPATO",
+        "filiale_proponente": "Filiale B"
+    },
+    "G54321": {
+        "indirizzo": "Via Bologna",
+        "numero_civico": "35",
+        "piano": "2",
+        "metri": "110",
+        "vani": "4",
+        "prezzo": "220000",
+        "stato": "LIBERO",
+        "filiale_proponente": "Filiale C"
+    },
+    "H98765": {
+        "indirizzo": "Via Palermo",
+        "numero_civico": "40",
+        "piano": "3",
+        "metri": "95",
+        "vani": "3",
+        "prezzo": "190000",
+        "stato": "OCCUPATO",
+        "filiale_proponente": "Filiale D"
+    },
+    "I12345": {
+        "indirizzo": "Via Genova",
+        "numero_civico": "45",
+        "piano": "1",
+        "metri": "85",
+        "vani": "2",
+        "prezzo": "160000",
+        "stato": "LIBERO",
+        "filiale_proponente": "Filiale A"
+    },
+    "J67890": {
+        "indirizzo": "Via Bari",
+        "numero_civico": "50",
+        "piano": "2",
+        "metri": "105",
+        "vani": "3",
+        "prezzo": "210000",
+        "stato": "OCCUPATO",
+        "filiale_proponente": "Filiale B"
+    }
+}

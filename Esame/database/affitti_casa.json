@@ -1,0 +1,30 @@
+{
+    "C54321": {
+        "data_affitto": "2023-10-10",
+        "filiale_proponente": "Filiale C",
+        "filiale_venditrice": "Filiale D",
+        "prezzo_affitto": "800",
+        "durata_contratto": "12 mesi"
+    },
+    "D98765": {
+        "data_affitto": "2023-09-20",
+        "filiale_proponente": "Filiale D",
+        "filiale_venditrice": "Filiale D",
+        "prezzo_affitto": "500",
+        "durata_contratto": "6 mesi"
+    },
+    "L67890": {
+        "data_affitto": "2025-01-07",
+        "filiale_proponente": "Filiale B",
+        "filiale_venditrice": "Filiale D",
+        "prezzo_affitto": "680",
+        "durata_contratto": "6 mesi"
+    },
+    "K12345": {
+        "data_affitto": "2025-01-07",
+        "filiale_proponente": "Filiale A",
+        "filiale_venditrice": "Filiale B",
+        "prezzo_affitto": "920",
+        "durata_contratto": "24 mesi"
+    }
+}
